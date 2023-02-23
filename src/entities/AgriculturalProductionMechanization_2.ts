@@ -31,45 +31,51 @@ export class AgriculturalProductionMechanization_2 {
   })
   pumpedIrrigationArea: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'electricity_rural_area',
     nullable: true,
     comment: '农村用电量(万千瓦小时)',
+    precision: 22,
   })
   electricityRuralArea: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'nitrogenous_fertilizer',
     nullable: true,
     comment: '农用化肥施用量-氮肥(吨)',
+    precision: 22,
   })
   nitrogenousFertilizer: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'phosphate_fertilizer',
     nullable: true,
     comment: '农用化肥施用量-磷肥(吨)',
+    precision: 22,
   })
   phosphateFertilizer: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'potash_fertilizer',
     nullable: true,
     comment: '农用化肥施用量-钾肥(吨)',
+    precision: 22,
   })
   potashFertilizer: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'compound_fertilizer',
     nullable: true,
     comment: '农用化肥施用量-复合肥(吨)',
+    precision: 22,
   })
   compoundFertilizer: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'mulch_film',
     nullable: true,
     comment: '农用塑料薄膜使用量-地膜(吨)',
+    precision: 22,
   })
   mulchFilm: number | null;
 
@@ -81,17 +87,19 @@ export class AgriculturalProductionMechanization_2 {
   })
   mulchFilmArea: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'agricultural_diesel_oil',
     nullable: true,
     comment: '农用柴油(吨)',
+    precision: 22,
   })
   agriculturalDieselOil: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'comsumption_pesticide',
     nullable: true,
     comment: '农药使用量 (吨)',
+    precision: 22,
   })
   comsumptionPesticide: number | null;
 

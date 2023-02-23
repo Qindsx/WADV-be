@@ -35,14 +35,14 @@ export default class AgriculturalInputsOutputsController {
 
   @route('/productionConditionsAndInputsByYears')
   @POST()
-  @before(inject(AuthenticationMiddleware))
+  // @before(inject(AuthenticationMiddleware))
   async productionConditionsAndInputsByYears(ctx: Context) {
     assert(
       ctx.request.body,
       object({
         year: array().required(),
-        limit: number().required(),
-        offset: number().required(),
+        limit: number(),
+        offset: number(),
       })
     );
     let filterQuery: SelectQueryBuilder<AgriculturalProductionMechanization_2> =
@@ -54,12 +54,12 @@ export default class AgriculturalInputsOutputsController {
         .createQueryBuilder('agriculturalProductionMechanization_2')
         .where('agriculturalProductionMechanization_2.year IN (:...years)', {
           years: ctx.request.body['year'],
-        });
+        })
+        .orderBy('agriculturalProductionMechanization_2.year');
     } else {
-      filterQuery =
-        await this._agriculturalProductionMechanization_2_Repository.createQueryBuilder(
-          'agriculturalProductionMechanization_2'
-        );
+      filterQuery = await this._agriculturalProductionMechanization_2_Repository
+        .createQueryBuilder('agriculturalProductionMechanization_2')
+        .orderBy('agriculturalProductionMechanization_2.year');
     }
 
     // 符合查询条件数量
@@ -104,14 +104,14 @@ export default class AgriculturalInputsOutputsController {
   }
   @route('/categoryOutputValueByYears')
   @POST()
-  @before(inject(AuthenticationMiddleware))
+  // @before(inject(AuthenticationMiddleware))
   async categoryOutputValueByYears(ctx: Context) {
     assert(
       ctx.request.body,
       object({
         year: array().required(),
-        limit: number().required(),
-        offset: number().required(),
+        limit: number(),
+        offset: number(),
       })
     );
     let filterQuery: SelectQueryBuilder<CategoryGrossOutput_5> = null;
@@ -120,12 +120,12 @@ export default class AgriculturalInputsOutputsController {
         .createQueryBuilder('categoryGrossOutput_5')
         .where('categoryGrossOutput_5.year IN (:...years)', {
           years: ctx.request.body['year'],
-        });
+        })
+        .orderBy('categoryGrossOutput_5.year');
     } else {
-      filterQuery =
-        await this._categoryGrossOutput_5_Repository.createQueryBuilder(
-          'categoryGrossOutput_5'
-        );
+      filterQuery = await this._categoryGrossOutput_5_Repository
+        .createQueryBuilder('categoryGrossOutput_5')
+        .orderBy('categoryGrossOutput_5.year');
     }
 
     // 符合查询条件数量
@@ -167,14 +167,14 @@ export default class AgriculturalInputsOutputsController {
   }
   @route('/agriculturalProductionByYears')
   @POST()
-  @before(inject(AuthenticationMiddleware))
+  // @before(inject(AuthenticationMiddleware))
   async agriculturalProductionByYears(ctx: Context) {
     assert(
       ctx.request.body,
       object({
         year: array().required(),
-        limit: number().required(),
-        offset: number().required(),
+        limit: number(),
+        offset: number(),
       })
     );
     let filterQuery: SelectQueryBuilder<MajorAgriculturalProducts_6> = null;
@@ -183,12 +183,12 @@ export default class AgriculturalInputsOutputsController {
         .createQueryBuilder('majorAgriculturalProducts_6')
         .where('majorAgriculturalProducts_6.year IN (:...years)', {
           years: ctx.request.body['year'],
-        });
+        })
+        .orderBy('majorAgriculturalProducts_6.year');
     } else {
-      filterQuery =
-        await this._majorAgriculturalProducts_6_Repository.createQueryBuilder(
-          'majorAgriculturalProducts_6'
-        );
+      filterQuery = await this._majorAgriculturalProducts_6_Repository
+        .createQueryBuilder('majorAgriculturalProducts_6')
+        .orderBy('majorAgriculturalProducts_6.year');
     }
 
     // 符合查询条件数量

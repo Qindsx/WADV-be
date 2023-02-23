@@ -109,44 +109,72 @@ export class ForproductsForestryOutput_8 {
   })
   sundryBamboo: number | null;
 
-  @Column('int', {
+  @Column('varchar', { name: 'year', nullable: true, length: 255 })
+  year: string | null;
+
+  @Column('double', {
     name: 'seeds_tung_oil_tree',
     nullable: true,
     comment: '油桐籽',
+    precision: 22,
   })
   seedsTungOilTree: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'oil_tea_camellia_seed',
     nullable: true,
     comment: '油茶籽',
+    precision: 22,
   })
   oilTeaCamelliaSeed: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'chinese_sapium_seed',
     nullable: true,
     comment: '乌椿籽',
+    precision: 22,
   })
   chineseSapiumSeed: number | null;
 
-  @Column('int', { name: 'chinese_gall', nullable: true, comment: '五倍子' })
+  @Column('double', {
+    name: 'chinese_gall',
+    nullable: true,
+    comment: '五倍子',
+    precision: 22,
+  })
   chineseGall: number | null;
 
-  @Column('int', { name: 'chinese_chestnut', nullable: true, comment: '板栗' })
+  @Column('double', {
+    name: 'chinese_chestnut',
+    nullable: true,
+    comment: '板栗',
+    precision: 22,
+  })
   chineseChestnut: number | null;
 
-  @Column('int', { name: 'mushroom', nullable: true, comment: '香菇' })
+  @Column('double', {
+    name: 'mushroom',
+    nullable: true,
+    comment: '香菇',
+    precision: 22,
+  })
   mushroom: number | null;
 
-  @Column('int', { name: 'white_fungus', nullable: true, comment: '白木耳' })
+  @Column('double', {
+    name: 'white_fungus',
+    nullable: true,
+    comment: '白木耳',
+    precision: 22,
+  })
   whiteFungus: number | null;
 
-  @Column('int', { name: 'black_fungus', nullable: true, comment: '黑木耳' })
+  @Column('double', {
+    name: 'black_fungus',
+    nullable: true,
+    comment: '黑木耳',
+    precision: 22,
+  })
   blackFungus: number | null;
-
-  @Column('varchar', { name: 'year', nullable: true, length: 255 })
-  year: string | null;
 
   toJSON() {
     return {

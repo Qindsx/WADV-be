@@ -86,189 +86,336 @@ export class StatisticsProduction_9 {
   })
   slaughteredPoultry: string | null;
 
-  @Column('int', { name: 'milk', nullable: true, comment: '牛奶产量' })
+  @Column('varchar', { name: 'year', comment: '年份', length: 255 })
+  year: string;
+
+  @Column('double', {
+    name: 'milk',
+    nullable: true,
+    comment: '牛奶产量',
+    precision: 22,
+  })
   milk: number | null;
 
-  @Column('int', { name: 'honey', nullable: true, comment: '蜂蜜' })
+  @Column('double', {
+    name: 'honey',
+    nullable: true,
+    comment: '蜂蜜',
+    precision: 22,
+  })
   honey: number | null;
 
-  @Column('int', { name: 'eggs', nullable: true, comment: '禽蛋产量' })
+  @Column('double', {
+    name: 'eggs',
+    nullable: true,
+    comment: '禽蛋产量',
+    precision: 22,
+  })
   eggs: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'tea_output_all',
     nullable: true,
     comment: '茶叶总产量',
+    precision: 22,
   })
   teaOutputAll: number | null;
 
-  @Column('int', { name: 'green_tea', nullable: true, comment: '绿茶' })
+  @Column('double', {
+    name: 'green_tea',
+    nullable: true,
+    comment: '绿茶',
+    precision: 22,
+  })
   greenTea: number | null;
 
-  @Column('int', { name: 'wulong_tea', nullable: true, comment: '清茶' })
+  @Column('double', {
+    name: 'wulong_tea',
+    nullable: true,
+    comment: '清茶',
+    precision: 22,
+  })
   wulongTea: number | null;
 
-  @Column('int', { name: 'white_tea', nullable: true, comment: '白茶' })
+  @Column('double', {
+    name: 'white_tea',
+    nullable: true,
+    comment: '白茶',
+    precision: 22,
+  })
   whiteTea: number | null;
 
-  @Column('int', { name: 'other_tea', nullable: true, comment: '其他茶' })
+  @Column('double', {
+    name: 'other_tea',
+    nullable: true,
+    comment: '其他茶',
+    precision: 22,
+  })
   otherTea: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'tea_plantation_area',
     nullable: true,
     comment: '年末茶园面积',
+    precision: 22,
   })
   teaPlantationArea: number | null;
 
-  @Column('int', { name: 'picked_area', nullable: true, comment: '采摘面积' })
+  @Column('double', {
+    name: 'picked_area',
+    nullable: true,
+    comment: '采摘面积',
+    precision: 22,
+  })
   pickedArea: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'fruit_output_all',
     nullable: true,
     comment: '水果产量',
+    precision: 22,
   })
   fruitOutputAll: number | null;
 
-  @Column('int', { name: 'peaches', nullable: true, comment: '桃子' })
+  @Column('double', {
+    name: 'peaches',
+    nullable: true,
+    comment: '桃子',
+    precision: 22,
+  })
   peaches: number | null;
 
-  @Column('int', { name: 'citrus', nullable: true, comment: '柑橘' })
+  @Column('double', {
+    name: 'citrus',
+    nullable: true,
+    comment: '柑橘',
+    precision: 22,
+  })
   citrus: number | null;
 
-  @Column('int', { name: 'pears', nullable: true, comment: '梨子' })
+  @Column('double', {
+    name: 'pears',
+    nullable: true,
+    comment: '梨子',
+    precision: 22,
+  })
   pears: number | null;
 
-  @Column('int', { name: 'grapes', nullable: true, comment: '葡萄' })
+  @Column('double', {
+    name: 'grapes',
+    nullable: true,
+    comment: '葡萄',
+    precision: 22,
+  })
   grapes: number | null;
 
-  @Column('int', { name: 'persimmons', nullable: true, comment: '葡萄' })
+  @Column('double', {
+    name: 'persimmons',
+    nullable: true,
+    comment: '葡萄',
+    precision: 22,
+  })
   persimmons: number | null;
 
-  @Column('int', { name: 'kiwi_fruit', nullable: true, comment: '猕猴桃' })
+  @Column('double', {
+    name: 'kiwi_fruit',
+    nullable: true,
+    comment: '猕猴桃',
+    precision: 22,
+  })
   kiwiFruit: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'yearend_orchard_area',
     nullable: true,
     comment: '年末果园面积',
+    precision: 22,
   })
   yearendOrchardArea: number | null;
 
-  @Column('int', { name: 'citrus_area', nullable: true, comment: '柑橘园面积' })
+  @Column('double', {
+    name: 'citrus_area',
+    nullable: true,
+    comment: '柑橘园面积',
+    precision: 22,
+  })
   citrusArea: number | null;
 
-  @Column('int', { name: 'pears_area', nullable: true, comment: '梨园面积' })
+  @Column('double', {
+    name: 'pears_area',
+    nullable: true,
+    comment: '梨园面积',
+    precision: 22,
+  })
   pearsArea: number | null;
 
-  @Column('int', { name: 'grapes_area', nullable: true, comment: '葡萄园面积' })
+  @Column('double', {
+    name: 'grapes_area',
+    nullable: true,
+    comment: '葡萄园面积',
+    precision: 22,
+  })
   grapesArea: number | null;
 
-  @Column('int', { name: 'peachs_area', nullable: true, comment: '桃园面积' })
+  @Column('double', {
+    name: 'peachs_area',
+    nullable: true,
+    comment: '桃园面积',
+    precision: 22,
+  })
   peachsArea: number | null;
 
-  @Column('int', { name: 'kiwi_area', nullable: true, comment: '猕猴桃面积' })
+  @Column('double', {
+    name: 'kiwi_area',
+    nullable: true,
+    comment: '猕猴桃面积',
+    precision: 22,
+  })
   kiwiArea: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'aquatic_products',
     nullable: true,
     comment: '水产产量',
+    precision: 22,
   })
   aquaticProducts: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'fish_caught_all',
     nullable: true,
     comment: '淡水捕捞产量',
+    precision: 22,
   })
   fishCaughtAll: number | null;
 
-  @Column('int', { name: 'fish_caught', nullable: true, comment: '鱼类捕捞' })
+  @Column('double', {
+    name: 'fish_caught',
+    nullable: true,
+    comment: '鱼类捕捞',
+    precision: 22,
+  })
   fishCaught: number | null;
 
-  @Column('int', { name: 'shrimps_caught', nullable: true, comment: '虾蟹类' })
+  @Column('double', {
+    name: 'shrimps_caught',
+    nullable: true,
+    comment: '虾蟹类',
+    precision: 22,
+  })
   shrimpsCaught: number | null;
 
-  @Column('int', { name: 'other_caught', nullable: true, comment: '其他类' })
+  @Column('double', {
+    name: 'shellfhsh_caught',
+    nullable: true,
+    comment: '贝类',
+    precision: 22,
+  })
+  shellfhshCaught: number | null;
+
+  @Column('double', {
+    name: 'other_caught',
+    nullable: true,
+    comment: '其他类',
+    precision: 22,
+  })
   otherCaught: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'fish_artificially_all',
     nullable: true,
     comment: '淡水养殖产量',
+    precision: 22,
   })
   fishArtificiallyAll: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'fish_artificially',
     nullable: true,
     comment: '鱼类养殖',
+    precision: 22,
   })
   fishArtificially: number | null;
 
-  @Column('int', {
-    name: 'shrimps_artificially',
+  @Column('double', {
+    name: 'shellfhsh_artificially',
     nullable: true,
-    comment: '虾蟹养殖',
+    comment: '贝类养殖',
+    precision: 22,
   })
-  shrimpsArtificially: number | null;
+  shellfhshArtificially: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'other_artificially',
     nullable: true,
     comment: '其他类',
+    precision: 22,
   })
   otherArtificially: number | null;
 
-  @Column('int', {
+  @Column('double', {
+    name: 'shrimps_artificially',
+    nullable: true,
+    comment: '虾蟹养殖',
+    precision: 22,
+  })
+  shrimpsArtificially: number | null;
+
+  @Column('double', {
     name: 'fish_cultured_all',
     nullable: true,
     comment: '增值养殖产量',
+    precision: 22,
   })
   fishCulturedAll: number | null;
 
-  @Column('int', { name: 'fish_cultured', nullable: true, comment: '鱼类增殖' })
+  @Column('double', {
+    name: 'fish_cultured',
+    nullable: true,
+    comment: '鱼类增殖',
+    precision: 22,
+  })
   fishCultured: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'shellfhsh_cultured',
     nullable: true,
     comment: '贝类增值',
+    precision: 22,
   })
   shellfhshCultured: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'other_cultured',
     nullable: true,
     comment: '其他增值类',
+    precision: 22,
   })
   otherCultured: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'fresh_cultured_area',
     nullable: true,
     comment: '淡水养殖面积',
+    precision: 22,
   })
   freshCulturedArea: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'paddy_cultured_area',
     nullable: true,
     comment: '稻田养殖面积',
+    precision: 22,
   })
   paddyCulturedArea: number | null;
 
-  @Column('int', {
+  @Column('double', {
     name: 'proliferation_artificially_area',
     nullable: true,
     comment: '增值养殖面积',
+    precision: 22,
   })
   proliferationArtificiallyArea: number | null;
-
-  @Column('varchar', { name: 'year', comment: '年份', length: 255 })
-  year: string;
 
   toJSON() {
     return {
@@ -312,8 +459,10 @@ export class StatisticsProduction_9 {
       fishCaughtAll: this.fishCaughtAll,
       fishCaught: this.fishCaught,
       shrimpsCaught: this.shrimpsCaught,
+      shellfhshArtificially: this.shellfhshArtificially,
       otherCaught: this.otherCaught,
       fishArtificiallyAll: this.fishArtificiallyAll,
+      shellfhshCaught: this.shellfhshCaught,
       fishArtificially: this.fishArtificially,
       shrimpsArtificially: this.shrimpsArtificially,
       otherArtificially: this.otherArtificially,
