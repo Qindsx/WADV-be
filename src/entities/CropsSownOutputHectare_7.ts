@@ -257,7 +257,7 @@ export class CropsSownOutputHectare_7 {
       herbCrops: this.herbCrops,
       vagetable: this.vagetable,
       melons: this.melons,
-      // classify: this.classify,
+      classify: this.classify,
       year: this.year,
     };
   }

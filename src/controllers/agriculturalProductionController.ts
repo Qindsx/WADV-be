@@ -33,15 +33,15 @@ export default class agriculturalProductionController {
 
   @route('/cropProductionByYears')
   @POST()
-  @before(inject(AuthenticationMiddleware))
+  // @before(inject(AuthenticationMiddleware))
   async cropProductionByYears(ctx: Context) {
     assert(
       ctx.request.body,
       object({
         year: array().required(),
-        classify: string().required(),
-        limit: number().required(),
-        offset: number().required(),
+        classify: string(),
+        limit: number(),
+        offset: number(),
       })
     );
     let filterQuery: SelectQueryBuilder<CropsSownOutputHectare_7> = null;
@@ -53,13 +53,12 @@ export default class agriculturalProductionController {
         })
         .andWhere('cropsSownOutputHectare_7.classify =:classify', {
           classify: ctx.request.body['classify'],
-        });
+        })
+        .orderBy('cropsSownOutputHectare_7.year');
     } else {
       filterQuery = await this._cropsSownOutputHectare_7_Repository
         .createQueryBuilder('cropsSownOutputHectare_7')
-        .andWhere('cropsSownOutputHectare_7.year =:classify', {
-          classify: ctx.request.body['classify'],
-        });
+        .orderBy('cropsSownOutputHectare_7.year');
     }
 
     // 符合查询条件数量
@@ -103,14 +102,14 @@ export default class agriculturalProductionController {
   }
   @route('/forestryProductionByYears')
   @POST()
-  @before(inject(AuthenticationMiddleware))
+  // @before(inject(AuthenticationMiddleware))
   async forestryProductionByYears(ctx: Context) {
     assert(
       ctx.request.body,
       object({
         year: array().required(),
-        limit: number().required(),
-        offset: number().required(),
+        limit: number(),
+        offset: number(),
       })
     );
     let filterQuery: SelectQueryBuilder<ForproductsForestryOutput_8> = null;
@@ -119,12 +118,12 @@ export default class agriculturalProductionController {
         .createQueryBuilder('forproductsForestryOutput_8')
         .where('forproductsForestryOutput_8.year IN (:...years)', {
           years: ctx.request.body['year'],
-        });
+        })
+        .orderBy('forproductsForestryOutput_8.year');
     } else {
-      filterQuery =
-        await this._forproductsForestryOutput_8_Repository.createQueryBuilder(
-          'forproductsForestryOutput_8'
-        );
+      filterQuery = await this._forproductsForestryOutput_8_Repository
+        .createQueryBuilder('forproductsForestryOutput_8')
+        .orderBy('forproductsForestryOutput_8.year');
     }
 
     // 符合查询条件数量
@@ -169,14 +168,14 @@ export default class agriculturalProductionController {
   }
   @route('/otherProductionSituationByYears')
   @POST()
-  @before(inject(AuthenticationMiddleware))
+  // @before(inject(AuthenticationMiddleware))
   async otherProductionSituationByYears(ctx: Context) {
     assert(
       ctx.request.body,
       object({
         year: array().required(),
-        limit: number().required(),
-        offset: number().required(),
+        limit: number(),
+        offset: number(),
       })
     );
     let filterQuery: SelectQueryBuilder<StatisticsProduction_9> = null;
@@ -185,12 +184,12 @@ export default class agriculturalProductionController {
         .createQueryBuilder('statisticsProduction_9')
         .where('statisticsProduction_9.year IN (:...years)', {
           years: ctx.request.body['year'],
-        });
+        })
+        .orderBy('statisticsProduction_9.year');
     } else {
-      filterQuery =
-        await this._statisticsProduction_9_Repository.createQueryBuilder(
-          'statisticsProduction_9'
-        );
+      filterQuery = await this._statisticsProduction_9_Repository
+        .createQueryBuilder('statisticsProduction_9')
+        .orderBy('statisticsProduction_9.year');
     }
 
     // 符合查询条件数量
