@@ -8,15 +8,19 @@ import AuthenticationMiddleware, {
 } from '../middleware/AuthenticationMiddleware';
 
 import { CropsSownOutputHectare_7 } from '../entities/CropsSownOutputHectare_7';
+import { CropsSownOutputHectare_7_Parent } from '../entities/CropsSownOutputHectare_7_Parent';
 import { ForproductsForestryOutput_8 } from '../entities/ForproductsForestryOutput_8';
 import { StatisticsProduction_9 } from '../entities/StatisticsProduction_9';
 import CropsSownOutputHectare_7_Repository from '../repositories/CropsSownOutputHectare_7_Repository';
+import CropsSownOutputHectare_7_Parent_Repository from '../repositories/CropsSownOutputHectare_7_Parent_Repository';
 import ForproductsForestryOutput_8_Repository from '../repositories/ForproductsForestryOutput_8_Repository';
 import StatisticsProduction_9_Repository from '../repositories/StatisticsProduction_9_Repository';
+import logger from '../logger';
 
 @route('/api/agriculturalProduction')
 export default class agriculturalProductionController {
   private _cropsSownOutputHectare_7_Repository: CropsSownOutputHectare_7_Repository;
+  private _cropsSownOutputHectare_7_Parent_Repository: CropsSownOutputHectare_7_Parent_Repository;
   private _forproductsForestryOutput_8_Repository: ForproductsForestryOutput_8_Repository;
   private _statisticsProduction_9_Repository: StatisticsProduction_9_Repository;
 
@@ -24,6 +28,10 @@ export default class agriculturalProductionController {
     this._cropsSownOutputHectare_7_Repository = connection.getCustomRepository(
       CropsSownOutputHectare_7_Repository
     );
+    this._cropsSownOutputHectare_7_Parent_Repository =
+      connection.getCustomRepository(
+        CropsSownOutputHectare_7_Parent_Repository
+      );
     this._forproductsForestryOutput_8_Repository =
       connection.getCustomRepository(ForproductsForestryOutput_8_Repository);
     this._statisticsProduction_9_Repository = connection.getCustomRepository(
@@ -83,6 +91,14 @@ export default class agriculturalProductionController {
 
     // 查询所有年份（分页）
 
+    // 查询关系表
+    const parentFilterQuery =
+      await this._cropsSownOutputHectare_7_Parent_Repository
+        .createQueryBuilder('cropsSownOutputHectare_7_Parent')
+        .getMany();
+
+    // logger.info(JSON.stringify(parentFilterQuery, null, 2));
+
     // 返回按年份查询结果
     const repCropsSownOutputHectare_7: CropsSownOutputHectare_7[] =
       await filterQuery.getMany();
@@ -90,10 +106,32 @@ export default class agriculturalProductionController {
     await Promise.all(
       repCropsSownOutputHectare_7.map(
         async (item: CropsSownOutputHectare_7) => {
-          cropsSownOutputHectare_7s.push(item.toJSON());
+          // logger.info(JSON.stringify(item.toJSON()), null, 2);
+          let arr = [];
+
+          // 添加根节点
+          // arr.push({
+          //   agriculturalProductName: 'notParent',
+          //   parentName: 'root',
+          //   name: '根节点',
+          //   id: 1,
+          // });
+
+          for (let i in item) {
+            parentFilterQuery.forEach((item1: any) => {
+              if (item1.agriculturalProductName === i) {
+                arr.push({ ...item1, value: item[i] });
+              }
+            });
+          }
+          cropsSownOutputHectare_7s.push({
+            year: item.year,
+            data: arr,
+          });
         }
       )
     );
+    logger.info(JSON.stringify(cropsSownOutputHectare_7s, null, 2));
     ctx.body = {
       data: cropsSownOutputHectare_7s,
       count: cropsSownOutputHectare_7Count,

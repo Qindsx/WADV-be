@@ -20,6 +20,7 @@ import { GrossOutputCompoosition_4 } from './entities/GrossOutputCompoosition_4'
 import { CategoryGrossOutput_5 } from './entities/CategoryGrossOutput_5';
 import { MajorAgriculturalProducts_6 } from './entities/MajorAgriculturalProducts_6';
 import { CropsSownOutputHectare_7 } from './entities/CropsSownOutputHectare_7';
+import { CropsSownOutputHectare_7_Parent } from './entities/CropsSownOutputHectare_7_Parent';
 import { ForproductsForestryOutput_8 } from './entities/ForproductsForestryOutput_8';
 import { StatisticsProduction_9 } from './entities/StatisticsProduction_9';
 // const user = new User();
@@ -50,6 +51,7 @@ export async function connectWithRetry(): Promise<Connection> {
         CategoryGrossOutput_5,
         MajorAgriculturalProducts_6,
         CropsSownOutputHectare_7,
+        CropsSownOutputHectare_7_Parent,
         ForproductsForestryOutput_8,
         StatisticsProduction_9,
       ],

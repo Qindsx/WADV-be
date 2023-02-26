@@ -214,6 +214,14 @@ export class CropsSownOutputHectare_7 {
   herbCrops: number | null;
 
   @Column('double', {
+    name: 'vagetable_melons',
+    nullable: true,
+    comment: '蔬菜与瓜果',
+    precision: 22,
+  })
+  vagetableMelons: number | null;
+
+  @Column('double', {
     name: 'vagetable',
     nullable: true,
     comment: '蔬菜',
@@ -255,6 +263,7 @@ export class CropsSownOutputHectare_7 {
       sugarCrops: this.sugarCrops,
       tobacco: this.tobacco,
       herbCrops: this.herbCrops,
+      vagetableMelons: this.vagetableMelons,
       vagetable: this.vagetable,
       melons: this.melons,
       classify: this.classify,
