@@ -131,7 +131,7 @@ export default class agriculturalProductionController {
         }
       )
     );
-    logger.info(JSON.stringify(cropsSownOutputHectare_7s, null, 2));
+    // logger.info(JSON.stringify(cropsSownOutputHectare_7s, null, 2));
     ctx.body = {
       data: cropsSownOutputHectare_7s,
       count: cropsSownOutputHectare_7Count,

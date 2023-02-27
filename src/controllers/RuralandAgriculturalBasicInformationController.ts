@@ -192,7 +192,7 @@ export default class RuralandAgriculturalBasicInformationController {
     let filterQuery: SelectQueryBuilder<GrossOutputCompoosition_4> = null;
 
     if (ctx.request.body['year'].length) {
-      logger.info(ctx.request.body['year'].length);
+      // logger.info(ctx.request.body['year'].length);
       filterQuery = await this._grossOutputCompoosition_4_Repository
         .createQueryBuilder('grossOutputCompoosition_4')
         .where('grossOutputCompoosition_4.year IN (:...years)', {
@@ -200,7 +200,7 @@ export default class RuralandAgriculturalBasicInformationController {
         })
         .orderBy('grossOutputCompoosition_4.year');
     } else {
-      logger.info(ctx.request.body['year'].length);
+      // logger.info(ctx.request.body['year'].length);
       filterQuery = await this._grossOutputCompoosition_4_Repository
         .createQueryBuilder('grossOutputCompoosition_4')
         .orderBy('grossOutputCompoosition_4.year');

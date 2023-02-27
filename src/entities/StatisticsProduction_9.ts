@@ -417,8 +417,17 @@ export class StatisticsProduction_9 {
   })
   proliferationArtificiallyArea: number | null;
 
+  @Column('double', {
+    name: 'shrimps_cultured',
+    nullable: true,
+    comment: '蟹类增值',
+    precision: 22,
+  })
+  shrimpsCultured: number | null;
+
   toJSON() {
     return {
+      shrimpsCultured: this.shrimpsCultured,
       yearendStockAnimals: this.yearendStockAnimals,
       cowsBreed: this.cowsBreed,
       beefCattle: this.beefCattle,

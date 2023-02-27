@@ -48,7 +48,7 @@ export default class AgriculturalInputsOutputsController {
     let filterQuery: SelectQueryBuilder<AgriculturalProductionMechanization_2> =
       null;
     if (ctx.request.body['year'].length) {
-      logger.info(JSON.stringify(ctx.request.body, null, 2));
+      // logger.info(JSON.stringify(ctx.request.body, null, 2));
 
       filterQuery = await this._agriculturalProductionMechanization_2_Repository
         .createQueryBuilder('agriculturalProductionMechanization_2')
