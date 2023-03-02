@@ -187,6 +187,14 @@ export class AgriculturalProductionMechanization_2 {
   @Column('varchar', { name: 'year', nullable: true, length: 255 })
   year: string | null;
 
+  @Column('boolean', {
+    name: 'isDel',
+    nullable: true,
+    comment: '能否删除',
+    default: '1',
+  })
+  isDel: number | null;
+
   toJSON() {
     return {
       effectiveIrrigationArea: this.effectiveIrrigationArea,

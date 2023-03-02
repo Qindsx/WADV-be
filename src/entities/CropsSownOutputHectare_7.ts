@@ -237,6 +237,14 @@ export class CropsSownOutputHectare_7 {
   })
   melons: number | null;
 
+  @Column('boolean', {
+    name: 'isDel',
+    nullable: true,
+    comment: '能否删除',
+    default: '1',
+  })
+  isDel: number | null;
+
   toJSON() {
     return {
       grainCrops: this.grainCrops,

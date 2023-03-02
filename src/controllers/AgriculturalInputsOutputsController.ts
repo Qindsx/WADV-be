@@ -102,6 +102,7 @@ export default class AgriculturalInputsOutputsController {
     };
     ctx.state = { OK };
   }
+
   @route('/categoryOutputValueByYears')
   @POST()
   // @before(inject(AuthenticationMiddleware))

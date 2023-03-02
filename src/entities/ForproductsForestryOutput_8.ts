@@ -176,6 +176,14 @@ export class ForproductsForestryOutput_8 {
   })
   blackFungus: number | null;
 
+  @Column('boolean', {
+    name: 'isDel',
+    nullable: true,
+    comment: '能否删除',
+    default: '1',
+  })
+  isDel: number | null;
+
   toJSON() {
     return {
       barrenMountain: this.barrenMountain,
