@@ -14,13 +14,18 @@ export default class Security {
   private static _keyLen: number = 32;
   private static _saltLen: number = 16;
   private static _digest: string = 'sha512';
-  private _tokenExp: string = '1d';
+  // private _tokenExp: number = 1000 * 60 * 60 * 2; // token 两小时刷新
   private _secret: string;
+  private _refreshSecret;
 
   constructor() {
     if (!process.env.SECRET) throw Error('could not find secret');
+    if (!process.env.REFRESH_SECRET)
+      throw Error('could not find refresh secret');
+    this._refreshSecret = process.env.REFRESH_SECRET;
     this._secret = process.env.SECRET;
     delete process.env.SECRET;
+    delete process.env.REFRESH_SECRET;
   }
 
   public static hashPassword(user: User): void {
@@ -55,11 +60,32 @@ export default class Security {
         username: user.username,
       },
       this._secret,
-      { expiresIn: this._tokenExp }
+      { expiresIn: process.env.TOKEN_TIME }
     );
+  }
+
+  public generateRefreshToken(user: User): string {
+    return jwt.sign(
+      {
+        id: user.id,
+        username: user.username,
+      },
+      this._refreshSecret,
+      { expiresIn: process.env.REFRESH_TOKEN_TIME }
+    );
+  }
+
+  // 解析token
+  public decodetoken(token: string) {
+    const decode = jwt.decode(token);
+    return decode;
   }
 
   public verifyToken(token: string): Claims {
     return jwt.verify(token, this._secret) as Claims;
+  }
+
+  public verify_refreshToken(refreshToken: string) {
+    return jwt.verify(refreshToken, this._refreshSecret);
   }
 }

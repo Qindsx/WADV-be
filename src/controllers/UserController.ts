@@ -79,8 +79,55 @@ export default class UserController {
     }
 
     const token: string = this._securityService.generateToken(user);
+    const refreshToken: string =
+      this._securityService.generateRefreshToken(user);
 
-    ctx.body = { user: user.toUserJSON(token) };
+    const user1 = this._securityService.decodetoken(
+      ctx.request.body['refreshToken']
+    );
+    logger.info(JSON.stringify(user1, null, 2));
+
+    ctx.body = {
+      messagee: '登录成功',
+      data: {
+        ...user.toUserJSON(token),
+        roles: ['admin'],
+        expires: 30 * 1000,
+        refreshToken,
+      },
+    };
     ctx.status = OK;
+  }
+
+  @route('/uesrs/refreshtoken')
+  @POST()
+  async refreshtoken(ctx: Context) {
+    assert(
+      ctx.request.body,
+      object({
+        refreshToken: string().required(),
+      })
+    );
+
+    try {
+      this._securityService.verify_refreshToken(
+        ctx.request.body['refreshToken']
+      );
+    } catch (error) {
+      ctx.throw(UNAUTHORIZED, 'Unauthorized');
+    }
+    // 解密token
+    const user = this._securityService.decodetoken(
+      ctx.request.body['refreshToken']
+    );
+    const user1 = this._securityService.decodetoken(
+      ctx.request.body['refreshToken']
+    );
+    logger.info(JSON.stringify(user1, null, 2));
+
+    // 重新获取token
+    // const token: string = this._securityService.generateToken(user);
+    // const refreshToken: string =
+    //   this._securityService.generateRefreshToken(user);
   }
 }

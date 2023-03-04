@@ -1,7 +1,7 @@
 import { RuralInfrastructure_1 } from '../entities/RuralInfrastructure_1';
 import RuralInfrastructure_1_Repository from '../repositories/RuralInfrastructure_1_Repository';
 import { route, GET, POST, before, inject, PUT } from 'awilix-koa';
-import { OK, CONFLICT } from 'http-status-codes';
+import { OK, CONFLICT, UNPROCESSABLE_ENTITY } from 'http-status-codes';
 import { Context } from 'koa';
 import { Connection, getConnection, In, SelectQueryBuilder } from 'typeorm';
 import { array, assert, number, object, string } from '@hapi/joi';
@@ -28,8 +28,8 @@ export default class RuralInfrastructure_1MangerController {
       ctx.request.body,
       object({
         year: array().required(),
-        limit: number().required(),
-        offset: number().required(),
+        limit: number(),
+        offset: number(),
       })
     );
     let filterQuery: SelectQueryBuilder<RuralInfrastructure_1> = null;
@@ -100,7 +100,7 @@ export default class RuralInfrastructure_1MangerController {
       object({
         data: array()
           .items({
-            year: string().required(),
+            year: string().required().error(new Error('年份格式错误，请重试')),
             /**
              * 农业从业人员(万人)
              */
@@ -192,7 +192,7 @@ export default class RuralInfrastructure_1MangerController {
       .values(ctx.request.body['data'])
       .execute();
     if (addRes) {
-      ctx.body = { messag: '添加成功!' };
+      ctx.body = { message: '添加成功!' };
       ctx.state = { OK };
     }
   }
@@ -286,7 +286,7 @@ export default class RuralInfrastructure_1MangerController {
     if (updeteRes.affected == 0) {
       ctx.throw(CONFLICT, '该年份数据不存在');
     } else {
-      ctx.body = { messag: '更新成功!' };
+      ctx.body = { message: '更新成功!' };
       ctx.state = { OK };
     }
   }
@@ -334,7 +334,7 @@ export default class RuralInfrastructure_1MangerController {
     if (deleteRes.affected == 0) {
       ctx.throw(CONFLICT, '数据不存在，无法删除');
     } else {
-      ctx.body = { messag: '删除成功!' };
+      ctx.body = { message: '删除成功!' };
       ctx.state = { OK };
     }
   }

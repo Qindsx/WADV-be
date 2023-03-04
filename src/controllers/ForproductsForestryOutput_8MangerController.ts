@@ -155,7 +155,7 @@ export default class CategoryGrossOutput_5MangerController {
       .values(ctx.request.body['data'])
       .execute();
     if (addRes) {
-      ctx.body = { messag: '添加成功!' };
+      ctx.body = { message: '添加成功!' };
       ctx.state = { OK };
     }
   }
@@ -208,7 +208,7 @@ export default class CategoryGrossOutput_5MangerController {
     if (updeteRes.affected == 0) {
       ctx.throw(CONFLICT, '该年份数据不存在');
     } else {
-      ctx.body = { messag: '更新成功!' };
+      ctx.body = { message: '更新成功!' };
       ctx.state = { OK };
     }
   }
@@ -254,7 +254,7 @@ export default class CategoryGrossOutput_5MangerController {
     if (deleteRes.affected == 0) {
       ctx.throw(CONFLICT, '数据不存在，无法删除');
     } else {
-      ctx.body = { messag: '删除成功!' };
+      ctx.body = { message: '删除成功!' };
       ctx.state = { OK };
     }
   }

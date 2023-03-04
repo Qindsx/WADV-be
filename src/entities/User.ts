@@ -15,10 +15,10 @@ export class User {
   })
   password: string;
 
-  toUserJSON(token: string) {
+  toUserJSON(accessToken: string) {
     return {
       username: this.username,
-      token,
+      accessToken,
     };
   }
 
