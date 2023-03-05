@@ -45,13 +45,13 @@ export class ForproductsForestryOutput_8 {
   })
   forestTendingArea: number | null;
 
-  @Column('double', {
-    name: 'forest_germchit',
-    nullable: true,
-    comment: '林木种苗',
-    precision: 22,
-  })
-  forestGermchit: number | null;
+  // @Column('double', {
+  //   name: 'forest_germchit',
+  //   nullable: true,
+  //   comment: '林木种苗',
+  //   precision: 22,
+  // })
+  // forestGermchit: number | null;
 
   @Column('double', {
     name: 'seedling_yield',
@@ -191,7 +191,7 @@ export class ForproductsForestryOutput_8 {
       reforestationArea: this.reforestationArea,
       scatteredTreePlanging: this.scatteredTreePlanging,
       forestTendingArea: this.forestTendingArea,
-      forestGermchit: this.forestGermchit,
+      // forestGermchit: this.forestGermchit,
       seedlingYield: this.seedlingYield,
       seedlingArea: this.seedlingArea,
       bambooTimberHarvesting: this.bambooTimberHarvesting,

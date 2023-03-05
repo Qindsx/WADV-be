@@ -10,6 +10,7 @@ import { uniq } from 'lodash/array';
 
 import CropsSownOutputHectare_7_Repository from '../repositories/CropsSownOutputHectare_7_Repository';
 import { CropsSownOutputHectare_7 } from '../entities/CropsSownOutputHectare_7';
+import logger from '../logger';
 
 @route('/api/agriculturalProduction/manger')
 export default class CategoryGrossOutput_5MangerController {
@@ -29,7 +30,7 @@ export default class CategoryGrossOutput_5MangerController {
       ctx.request.body,
       object({
         year: array().required(),
-        classify: string(),
+        classify: string().allow(''),
         limit: number(),
         offset: number(),
       })
@@ -41,19 +42,24 @@ export default class CategoryGrossOutput_5MangerController {
         .where('cropsSownOutputHectare_7.year IN (:...years)', {
           years: ctx.request.body['year'],
         })
-        .andWhere('cropsSownOutputHectare_7.classify =:classify', {
-          classify: ctx.request.body['classify'],
+        .andWhere('cropsSownOutputHectare_7.classify like :classify', {
+          classify: `%${ctx.request.body['classify']}%`,
         })
         .orderBy('cropsSownOutputHectare_7.year');
     } else {
       filterQuery = await this._cropsSownOutputHectare_7_Repository
         .createQueryBuilder('cropsSownOutputHectare_7')
+        .where('cropsSownOutputHectare_7.classify like :classify', {
+          classify: `%${ctx.request.body['classify']}%`,
+        })
         .orderBy('cropsSownOutputHectare_7.year');
     }
 
     // 符合查询条件数量
     const cropsSownOutputHectare_7Count: Number = await filterQuery.getCount();
 
+    let sql = await filterQuery.getSql();
+    logger.info(sql);
     // 查询结果为空
     if (!cropsSownOutputHectare_7Count) {
       ctx.body = { data: [], cropsSownOutputHectare_7Count: 0 };
@@ -68,7 +74,7 @@ export default class CategoryGrossOutput_5MangerController {
     }
 
     if (ctx.request.body['offset']) {
-      filterQuery.take(ctx.request.body['offset']);
+      filterQuery.skip(ctx.request.body['offset']);
     }
 
     // 返回按年份查询结果

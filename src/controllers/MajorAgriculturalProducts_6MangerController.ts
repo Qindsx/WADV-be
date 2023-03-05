@@ -65,7 +65,7 @@ export default class CategoryGrossOutput_5MangerController {
     }
 
     if (ctx.request.body['offset']) {
-      filterQuery.take(ctx.request.body['offset']);
+      filterQuery.skip(ctx.request.body['offset']);
     }
 
     // 查询所有年份（分页）
