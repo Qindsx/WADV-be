@@ -7,7 +7,7 @@ export const AppDataSource = new DataSource({
   host: 'localhost',
   port: 3306,
   username: 'root',
-  password: 'password',
+  password: '123456',
   database: 'agricultural_statistics',
   synchronize: true,
   logging: false,
@@ -15,3 +15,4 @@ export const AppDataSource = new DataSource({
   migrations: [],
   subscribers: [],
 });
+ 

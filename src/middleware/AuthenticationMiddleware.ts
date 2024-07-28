@@ -47,7 +47,9 @@ export default function AuthenticationMiddleware(
     const userRepository: UserRepository =
       connection.getCustomRepository(UserRepository);
 
-    const user: User | undefined = await userRepository.findOne(claims.id);
+    const user: User | undefined = await userRepository.findOne({
+      id:claims.id
+    });
     if (!user) {
       ctx.throw(UNAUTHORIZED, 'Unauthorized4');
     }

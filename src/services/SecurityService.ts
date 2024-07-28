@@ -3,7 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import { User } from '../entities/User';
 
 export interface Claims {
-  id: number;
+  id: string;
   username: string;
   iat: number;
   exp: number;
